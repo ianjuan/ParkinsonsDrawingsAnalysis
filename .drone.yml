@@ -8,4 +8,5 @@ steps:
     image: alpine                        # 使用 alpine 容器
     commands:                            # 預執行的 shell 指令，這邊印出 hosts 內容
       - cat Test.txt
-    when: echo "test"
+      - pwd
+      - ls
