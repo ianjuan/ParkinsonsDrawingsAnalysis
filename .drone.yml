@@ -6,10 +6,12 @@ steps:
 - name: publish
   image: plugins/docker
   settings:
+    registry: registry.hub.docker.com
     auto_tag: true
     auto_tag_suffix: linux-amd64
     dockerfile: ML/Dockerfile
-    repo: drone/docker
-    username: hub_username
+    repo: registry.hub.docker.com/ianjuan/parkinsonsdrawingsanalysis
+    username: 
+      $secret: hub_username
     password:
       $secret: hub_pwd
