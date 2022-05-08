@@ -10,8 +10,8 @@ steps:
     auto_tag: true
     auto_tag_suffix: linux-amd64
     dockerfile: ML/Dockerfile
-    registry: registry.hub.docker.com
-    repo: registry.hub.docker.com/ianjuan/parkinsonsdrawingsanalysis
+    registry: hub.docker.com
+    repo: hub.docker.com/repository/docker/ianjuan/parkinsonsdrawingsanalysis
     username: 
       from_secret: docker_username
     password:
