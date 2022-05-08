@@ -1,10 +1,17 @@
 kind: pipeline
 type: docker
-name: test
+name: default
 
 steps:
-- name: greeting
-  image: golang:1.12
-  commands:
-  - go build
-  - go test
+- name: publish
+  pull: if-not-exists
+  image: plugins/docker
+  settings:
+    auto_tag: true
+    dockerfile: ML/Dockerfile
+    registry: registry.hub.docker.com
+    repo: registry.hub.docker.com/ianjuan/parkinsonsdrawingsanalysis
+    username: 
+      from_secret: docker_username
+    password:
+      from_secret: docker_password
