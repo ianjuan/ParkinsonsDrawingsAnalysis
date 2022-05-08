@@ -4,14 +4,15 @@ name: default
 
 steps:
 - name: publish
+  pull: if-not-exists
   image: plugins/docker
   settings:
-    registry: registry.hub.docker.com
     auto_tag: true
     auto_tag_suffix: linux-amd64
     dockerfile: ML/Dockerfile
+    registry: registry.hub.docker.com
     repo: registry.hub.docker.com/ianjuan/parkinsonsdrawingsanalysis
     username: 
-      $secret: hub_username
+      from_secret: docker_username
     password:
-      $secret: hub_pwd
+      from_secret: docker_password
