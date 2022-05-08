@@ -1,10 +1,15 @@
 kind: pipeline
 type: docker
-name: test
+name: default
 
 steps:
-- name: greeting
-  image: golang:1.12
-  commands:
-  - go build
-  - go test
+- name: publish
+  image: plugins/docker
+  settings:
+    auto_tag: true
+    auto_tag_suffix: linux-amd64
+    dockerfile: ML/Dockerfile
+    repo: drone/docker
+    username: hub_username
+    password:
+      $secret: hub_pwd
