@@ -46,6 +46,6 @@ my_callbacks = tf.keras.callbacks.EarlyStopping(patience=PATIENCE,
 model.fit(ds_train, epochs=EPOCH, validation_data=ds_test)
 
 # save model
-model.save('./model')
+model.save('/model')
 
 print("finished")
