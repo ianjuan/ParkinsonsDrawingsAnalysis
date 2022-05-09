@@ -1,10 +1,11 @@
+import os
 import tensorflow as tf
 import tensorflow_datasets as tfds
-
 
 # config
 EPOCH = 10
 PATIENCE = 10
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '1'
 
 # load dataset
 ds_train, ds_test = tfds.load('mnist', split=['train', 'test'],
@@ -44,5 +45,7 @@ my_callbacks = tf.keras.callbacks.EarlyStopping(patience=PATIENCE,
 # fit dataset to model
 model.fit(ds_train, epochs=EPOCH, validation_data=ds_test)
 
-# Export model and save to GCS
+# save model
 model.save('./model')
+
+print("finished")
