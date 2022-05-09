@@ -1,12 +1,24 @@
 kind: pipeline
 type: docker
-name: test
+name: default
 
 steps:
-  # 事件一
-  - name: cat file                           # 事件一：可自行定義的名稱
-    image: alpine                        # 使用 alpine 容器
-    commands:                            # 預執行的 shell 指令，這邊印出 hosts 內容
-      - cat Test.txt
-      - pwd
-      - ls
+- name: publish
+  pull: if-not-exists
+  image: plugins/docker
+  settings:
+    auto_tag: true
+    dockerfile: ML/Dockerfile
+    repo: ianjuan/parkinsonsdrawingsanalysis
+    username: 
+      from_secret: docker_username
+    password:
+      from_secret: docker_password
+- name: deploy
+  image: sinlead/drone-kubectl
+  settings:
+    kubernetes_server:
+      from_secret: k8s_server
+  commands:
+    - kubectl create -f job_foo.yaml
+    - kubectl wait --for=condition=complete -f job_foo.yaml
