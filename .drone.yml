@@ -9,9 +9,17 @@ steps:
   settings:
     auto_tag: true
     dockerfile: ML/train/Dockerfile
-    registry: registry.hub.docker.com
-    repo: registry.hub.docker.com/ianjuan/parkinsonsdrawingsanalysis
+    repo: ianjuan/parkinsonsdrawingsanalysis
     username: 
       from_secret: docker_username
     password:
       from_secret: docker_password
+
+- name: deploy
+  image: sinlead/drone-kubectl
+  settings:
+    kubernetes_server:
+      from_secret: k8s_server
+  commands:
+    - kubectl create -f job_foo.yaml
+    - kubectl wait --for=condition=complete -f job_foo.yaml
