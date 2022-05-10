@@ -8,7 +8,7 @@ steps:
   image: plugins/docker
   settings:
     auto_tag: true
-    dockerfile: ML/Dockerfile
+    dockerfile: ML/train/Dockerfile
     repo: ianjuan/parkinsonsdrawingsanalysis
     username: 
       from_secret: docker_username
