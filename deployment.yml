@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: parkin-deployment
+  labels:
+    app: parkin
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: parkin
+  template:
+    metadata:
+      labels:
+        app: parkin
+    spec:
+      containers:
+      - name: parkin
+        image: ianjuan/parkinsonsdrawingsanalysis:latest
+        ports:
+        - containerPort: 80

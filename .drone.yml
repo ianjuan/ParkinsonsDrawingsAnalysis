@@ -21,5 +21,6 @@ steps:
     kubernetes_server:
       from_secret: k8s_server
   commands:
-    - kubectl create -f job_foo.yaml
-    - kubectl wait --for=condition=complete -f job_foo.yaml
+    - pwd
+    - ls
+    - kubectl apply -f deployment.yml
